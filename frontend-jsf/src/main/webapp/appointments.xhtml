@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Agendamentos</title>
+</h:head>
+<h:body>
+    <h:form id="appointmentForm">
+        <p:panel header="Novo Agendamento">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel value="Nome:"/>
+                <p:inputText value="#{appointmentBean.customerName}"/>
+
+                <h:outputLabel value="Serviço:"/>
+                <p:inputText value="#{appointmentBean.serviceType}"/>
+
+                <h:outputLabel value="Data/Hora:"/>
+                <p:calendar value="#{appointmentBean.dateTime}" pattern="dd/MM/yyyy HH:mm"/>
+            </h:panelGrid>
+            <p:commandButton value="Agendar" action="#{appointmentBean.save}" update=":appointmentForm"/>
+        </p:panel>
+
+        <p:dataTable value="#{appointmentBean.appointments}" var="a" header="Agendamentos">
+            <p:column headerText="Cliente">#{a.customerName}</p:column>
+            <p:column headerText="Serviço">#{a.serviceType}</p:column>
+            <p:column headerText="Data">#{a.dateTime}</p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
